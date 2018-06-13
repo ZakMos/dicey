@@ -18,9 +18,6 @@ function getRandomInt(min, max) {
 }
 
 function rollThatDice() {
-	// rollThatDice.forEach(functin(roll)) {
-	//
-	// }
 	rollDice.setAttribute("src", diceFaces[getRandomInt(0, 5)]),
 	rollDice1.setAttribute("src", diceFaces[getRandomInt(0, 5)]) ;
 }
