@@ -1,27 +1,52 @@
-let diceFaces = [
-	"/images/inverted-dice-1.svg",
-	"/images/inverted-dice-2.svg",
-	"/images/inverted-dice-3.svg",
-	"/images/inverted-dice-4.svg",
-	"/images/inverted-dice-5.svg",
-	"/images/inverted-dice-6.svg"
-];
-
-
-let rollDice = document.querySelector(".dice");
-let rollDice1 = document.querySelector(".dice1");
-
-function getRandomInt(min, max) {
+function getRandomIntInclusive(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+	return Math.floor(Math.random() * (max - min +1)) + min;
 }
 
-function rollThatDice() {
-	rollDice.setAttribute("src", diceFaces[getRandomInt(0, 5)]),
-	rollDice1.setAttribute("src", diceFaces[getRandomInt(0, 5)]) ;
+// console.log(getRandomIntInclusive(1,6));
+
+const dice = {
+	value : 1,
+	roll: function(){
+		this.value = getRandomIntInclusive(1,6);
+		return this.value;
+	}
+};
+
+const diceTwo = {
+	value : 1,
+	roll: function(){
+		this.value = getRandomIntInclusive(1,6);
+		return this.value;
+	}
+};
+
+function printDice(diceOneNumber, diceTwoNumber) {
+	let newClass = "img-0"+diceOneNumber;
+	let elm = document.getElementById("dice-01");
+
+	if(elm.className !== newClass){
+		elm.className = newClass;
+	}
+	let newClassTwo = "img-0"+diceTwoNumber;
+	let elmTwo = document.getElementById("dice-02");
+
+	if(elmTwo.className !== newClassTwo){
+		elmTwo.className = newClassTwo;
+	}
 }
-document.addEventListener("click", function(event) {
+
+
+document.querySelector("button").addEventListener("click", event => {
 	event.preventDefault();
-	rollThatDice();
+	let diceOneNumber = dice.roll();
+	// let containerOne = document.querySelector(".dice-01");
+
+	let diceTwoNumber = diceTwo.roll();
+	// let containerTwo = document.querySelector(".dice-02");
+	printDice(diceOneNumber, diceTwoNumber);
+
 });
+
+printDice(dice.roll(), diceTwo.roll());
